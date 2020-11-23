@@ -3,24 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOME</title>
+    <title>CATALOG</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="catalog.css">
     <meta name="description" content="Magazin">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+
+
 </head>
 
 <body>
     <header>
         <a href="index.html"><img src="assets/images/logo.png" width="200px" alt="Logo Starter Pack"></a>
         <ul class="menu">
-            <li><a href=#>Catalog</a></li>
-            <li><a href=#>Contact</a></li>
-            <li><a href=#>About</a></li>
-            <li><input type="search" placeholder="Search"></li>
-            <li class="phone">Phone: <a href="tel:+380502610717">+38 (050) 261-07-17</a> </li>
+            <li><a href=#>CATALOG</a></li>
+            <li><a href=#>CONTACT</a></li>
+            <li><a href=#>ABOUT</a></li>
+            <li><input type="search" placeholder="SEARCH"></li>
+            <li class="phone"><a href="tel:+380502610717">CALL US</a> </li>
         </ul>
     </header>
     <main>
@@ -30,8 +32,91 @@
                 <li><a href="#">Catalog</a></li>
             </ul>
         </div>
-        <h1>Catalog</h1>
-        <div id="container"></div>
+        <h1>CATALOG</h1>
+        <div id="container">
+            <div id="producer">
+                <div class="check checkmovie">
+                    <h2>Movie</h2>
+                    <div class="checkflex movieFlex">
+                        <input type="checkbox" id="killbill">
+                        <label for="killbill">Kill Bill</label>
+                        <input type="checkbox" id="zhmurki">
+                        <label for="zhmurki">Zhmurki</label>
+                        <input type="checkbox" id="brat">
+                        <label for="brat">Brat</label>
+                        <input type="checkbox" id="fightclub">
+                        <label for="fightclub">Fight Club</label>
+                        <input type="checkbox" id="pulpfiction">
+                        <label for="pulpfiction">Pulp Fiction</label>
+                        <input type="checkbox" id="onceUpon">
+                        <label for="onceUpon">Once Upon a Time in Hollywood</label>
+                    </div>
+                </div>
+                <div class="check checkgender">
+                    <h2>Gender</h2>
+                    <div class="checkflex movieFlex">
+                        <input type="radio" name="gender" id="male">
+                        <label for="male">Male</label>
+                        <input type="radio" name="gender" id="female">
+                        <label for="female">Female</label>
+                        <input type="radio" name="gender" id="unisex">
+                        <label for="unisex">Unisex</label>
+                    </div>
+                </div>
+            </div>
+            <div id="cart">
+                <img id="imgCart" src="assets/images/cart.png">
+                <div id="itemCount">0</div>
+                <div id="total">
+                    <div id="itemInCart">No items in the cart</div>
+                    <div>Total price: <span id="totalPrice">0</span>$</div>
+                </div>
+            </div>
+            <div id="filter">
+                <div class="type">
+                    <h2>Type of clothes</h2>
+                    <div class="checkflex flexrow">
+                        <input type="checkbox" id="jackets">
+                        <label for="jackets">Jackets</label>
+                        <input type="checkbox" id="trousers">
+                        <label for="trousers">Trousers</label>
+                        <input type="checkbox" id="sweaters">
+                        <label for="sweaters">Sweaters</label>
+                        <input type="checkbox" id="shoes">
+                        <label for="shoes">Shoes</label>
+                        <input type="checkbox" id="accessories">
+                        <label for="accessories">Accessories</label>
+                        <input type="checkbox" id="other">
+                        <label for="other">Other</label>
+                    </div>
+                </div>
+                <div class="sort">
+                    <h2>Sorting by price</h2>
+                    <div class="checkflex button">
+                        <input type="button" value="ASC">
+                        <input type="button" value="DESC">
+                    </div>
+                    <div class="range checkflex button">
+                        <input type="range" name="min" id="min">
+                        <label for="min">Min</label>
+                        <input type="range" name="max" id="max">
+                        <label for="Max">Max</label>
+                    </div>
+                </div>
+                <div class="availability">
+                    <h2>Availability</h2>
+                    <div class="checkflex button">
+                        <input type="button" value="IN STOCK">
+                        <input type="button" value="SOLD" class="red">
+                    </div>
+                </div>
+                <div class="recomendation">
+                    <h2>Recommendation:</h2>
+                </div>
+            </div>
+            <div id="products"></div>
+        </div>
+        <div class="pagination">TUT BUDE PAGINATION</div>
     </main>
     <footer>
         <div class="copyright">Copyright © | Starter Pack | All Rights Reserved</div>

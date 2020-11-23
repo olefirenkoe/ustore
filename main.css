@@ -4,6 +4,15 @@ body {
     font-family: 'Work Sans', sans-serif;
 }
 
+h1 {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 15px;
+}
+
 
 /* header */
 
@@ -49,20 +58,20 @@ input[type="search"] {
     outline: none;
 }
 
-h1 {
-    text-align: center;
-}
-
 .text {
     padding: 20px;
     text-align: center;
+}
+
+.main {
+    height: 100%;
 }
 
 footer {
     height: 50px;
     background: #91241e;
     font-size: 10px;
-    position: relative;
+    position: sticky;
 }
 
 .copyright,

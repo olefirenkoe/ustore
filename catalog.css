@@ -1,9 +1,8 @@
+/* breadcrumb*/
+
 .bread {
     margin-top: -20px;
 }
-
-
-/* Style the list */
 
 ul.breadcrumb {
     padding-top: 0px;
@@ -13,32 +12,20 @@ ul.breadcrumb {
     background-color: #d7d6ca;
 }
 
-
-/* Display list items side by side */
-
 ul.breadcrumb li {
     display: inline;
     font-size: 18px;
     margin-right: 5px;
 }
 
-
-/* Add a slash symbol (/) before/behind each list item */
-
 ul.breadcrumb li+li:before {
     color: black;
     content: "/\00a0";
 }
 
-
-/* Add a color to all links inside the list */
-
 ul.breadcrumb li a {
     text-decoration: none;
 }
-
-
-/* Add a color on mouse-over */
 
 ul.breadcrumb li a:hover {
     color: #01447e;
@@ -52,4 +39,167 @@ ul.breadcrumb li a[href="#"] {
 ul.breadcrumb li a[href="#"]:hover {
     text-shadow: none;
     text-decoration: none;
+}
+
+
+/* main*/
+
+#container {
+    width: calc(100% - 120px);
+    height: 100%;
+    display: grid;
+    grid-template-columns: 20% 45% 35%;
+    grid-template-rows: 14% 86%;
+    grid-gap: 10PX;
+    grid-template-areas: "producer producer cart" "filter products products";
+}
+
+#producer {
+    grid-area: producer;
+    background: #303030;
+}
+
+#cart {
+    grid-area: cart;
+    background: #202021;
+    position: relative;
+}
+
+#filter {
+    grid-area: filter;
+    background: #202021;
+}
+
+#products {
+    grid-area: products;
+    background: #303030;
+}
+
+.pagination {
+    padding: 20px;
+    text-align: center;
+}
+
+
+/* block for shopping cart*/
+
+#imgCart {
+    position: absolute;
+    height: 40px;
+    filter: invert(100);
+    padding: 1px;
+    right: 15px;
+    top: 15px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+#imgCart:hover {
+    box-shadow: 0 0 5px black;
+}
+
+#itemCount {
+    position: absolute;
+    font-size: 20px;
+    right: 30px;
+    top: 70px;
+}
+
+#total {
+    position: absolute;
+    left: 20px;
+    top: 15px;
+    padding: 10px;
+    background-color: #303030;
+    width: 75%;
+    height: max-content;
+    border-radius: 5px;
+    border: 5px solid #232529;
+    opacity: 0;
+}
+
+#itemInCart {
+    font-weight: bold;
+}
+
+#imgCart:hover~#total {
+    opacity: 1;
+}
+
+
+/* block for check producer and gender*/
+
+#producer {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-areas: "movie gender";
+}
+
+.checkmovie {
+    grid-area: movie;
+}
+
+.checkgender {
+    grid-area: gender;
+}
+
+.movieFlex {
+    margin-top: 0;
+    flex-wrap: wrap;
+}
+
+.movieFlex>input[type="checkbox"] {
+    margin: 5px;
+    opacity: 1;
+}
+
+.movieFlex>label {
+    font-size: 18px;
+    /* border: 2px solid #202021;
+    border-radius: 10px;
+    padding: 2px;
+    margin: 2px; */
+}
+
+.checkflex {
+    display: flex;
+    justify-content: center;
+}
+
+.flexrow {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    height: 80px;
+    flex-wrap: wrap;
+}
+
+.type,
+.sort,
+.availability {
+    padding-bottom: 10px;
+    border-bottom: 5px solid #272a2d;
+}
+
+.button>input {
+    color: white;
+    background: #303030;
+    border: none;
+    margin: auto;
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.range {
+    height: 100px;
+    margin: 10px 10px;
+}
+
+.range>label {
+    margin: auto;
+}
+
+input[class="red"] {
+    color: tomato;
 }
