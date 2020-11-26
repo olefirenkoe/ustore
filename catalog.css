@@ -45,11 +45,11 @@ ul.breadcrumb li a[href="#"]:hover {
 /* main*/
 
 #container {
-    width: calc(100% - 120px);
-    height: 100%;
+    width: calc(100% - 50px);
+    height: max-content;
     display: grid;
     grid-template-columns: 20% 45% 35%;
-    grid-template-rows: 14% 86%;
+    grid-template-rows: 120px auto;
     grid-gap: 10PX;
     grid-template-areas: "producer producer cart" "filter products products";
 }
@@ -202,4 +202,36 @@ ul.breadcrumb li a[href="#"]:hover {
 
 input[class="red"] {
     color: tomato;
+}
+
+#products {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.item {
+    margin: 10px auto;
+    width: 390px;
+    height: 300px;
+    position: relative;
+}
+
+.divPhoto {
+    width: max-content;
+}
+
+.divPhoto>img {
+    width: 250px;
+    height: 250px;
+    border-radius: 10px;
+    position: absolute;
+    top: 10px;
+}
+
+.img2 {
+    z-index: -1;
+}
+
+.divPhoto:hover>.img2 {
+    z-index: 2;
 }
