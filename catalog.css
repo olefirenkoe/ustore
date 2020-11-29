@@ -107,7 +107,7 @@ ul.breadcrumb li a[href="#"]:hover {
 
 #total {
     position: absolute;
-    left: 20px;
+    left: 12px;
     top: 15px;
     padding: 10px;
     background-color: #303030;
@@ -116,6 +116,12 @@ ul.breadcrumb li a[href="#"]:hover {
     border-radius: 5px;
     border: 5px solid #232529;
     opacity: 0;
+    z-index: 2;
+}
+
+.totalPrice {
+    margin-top: 20px;
+    font-weight: bold;
 }
 
 #itemInCart {
@@ -214,6 +220,14 @@ input[class="red"] {
     width: 390px;
     height: 300px;
     position: relative;
+    border: 2px solid #202021;
+    border-radius: 10px;
+    color: #9f8a6d;
+}
+
+.item:hover {
+    background: #202021;
+    box-shadow: 10px 10px 10px black;
 }
 
 .divPhoto {
@@ -221,11 +235,12 @@ input[class="red"] {
 }
 
 .divPhoto>img {
-    width: 250px;
-    height: 250px;
+    width: 200px;
+    height: 200px;
     border-radius: 10px;
     position: absolute;
-    top: 10px;
+    top: 50px;
+    left: 15px;
 }
 
 .img2 {
@@ -234,4 +249,47 @@ input[class="red"] {
 
 .divPhoto:hover>.img2 {
     z-index: 2;
+    transition: 1.4s;
+}
+
+.name {
+    text-align: center;
+    margin: 10px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.right {
+    position: absolute;
+    left: 230px;
+    font-size: 25px;
+}
+
+.price {
+    top: 70px;
+}
+
+.divAvailability {
+    color: green;
+    top: 130px;
+    font-size: 20px;
+}
+
+.divButton {
+    top: 200px;
+}
+
+.divButton>input {
+    width: 120px;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    font-size: large;
+    font-weight: bold;
+    background: indianred;
+    /* outline: none; */
+}
+
+.divButton>input:hover {
+    box-shadow: 4px 4px 0px black;
 }
