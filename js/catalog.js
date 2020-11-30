@@ -7,7 +7,6 @@ function MyObject(names, type, gender, availability, movie, price, photo1, photo
     this.price = price;
     this.photo1 = photo1;
     this.photo2 = photo2;
-    // this.number = 0;
 };
 
 let leatherJacket = new MyObject("Panin's Jacket", "jacket", "male", "IN STOCK", "Zhmurki", 120, "leatherJacket1", "leatherJacket2");
@@ -26,18 +25,14 @@ let shoesHollywood = new MyObject("Bratt Pitt's Shoes", "shoes", "male", "SOLD O
 let brownJacketHollywood = new MyObject("Leo's Brown Jacket", "jacket", "male", "IN STOCK", "Once Upon a Time in Hollywood", 210, "brownJacketHollywood1", "brownJacketHollywood2");
 // let topHollywood = new MyObject("Top Hippie Girl", "other", "unisex", "SOLD OUT", "Once Upon a Time in Hollywood", 20, "topHollywood1", "topHollywood2");
 
-
-let counter = 0;
-let total = 0;
-let number = 0;
-
+let counter;
+let total;
 
 let products = [brownJacketHollywood, leatherJacket, pinkJacket, armoredFolder, trousersKillBill, jacketKillBill, swordKillBill, sweaterBrat, playerBrat, denimJacketBrat, soapFightClub, sunglassesFightClub, jacketFightClub, shoesHollywood];
-
 let containerForProducts = document.getElementById("products");
 
 for (let i = 0; i < products.length; i++) {
-    let divItem = document.createElement("DIV");
+    let divItem = document.createElement('DIV');
     divItem.setAttribute("class", "item");
     containerForProducts.appendChild(divItem);
     let divPhoto = document.createElement("DIV");
@@ -49,58 +44,150 @@ for (let i = 0; i < products.length; i++) {
     divPhoto.appendChild(img1);
     let img2 = document.createElement("IMG");
     img2.setAttribute("src", `assets/catalog/${products[i].photo2}.jpg`);
-    img2.setAttribute("class", "img2")
+    img2.setAttribute("class", "img2");
     divPhoto.appendChild(img2);
-    let divPrice = document.createElement("DIV");
-    divPrice.setAttribute("class", "right price");
-    divPrice.innerHTML = `<b>Price:</b> ${products[i].price}$`;
-    divItem.appendChild(divPrice);
-    let divName = document.createElement("DIV");
-    divName.setAttribute("class", "name");
-    divName.innerHTML = `${products[i].names}`;
-    divItem.appendChild(divName);
+    let name = document.createElement('h2');
+    name.setAttribute("class", "name");
+    name.innerHTML = `${products[i].names}`;
+    divItem.appendChild(name);
+    let price = document.createElement('p');
+    price.setAttribute("class", "right price");
+    price.innerHTML = `Price: <span class="priceProduct">${products[i].price}</span>$`;
+    divItem.appendChild(price);
+    price.style.float = "right";
     let divAvailability = document.createElement("DIV");
     divAvailability.setAttribute("class", "right divAvailability");
     divAvailability.innerHTML = `${products[i].availability}`;
     divItem.appendChild(divAvailability);
     if (products[i].availability == "SOLD OUT")
         divAvailability.style.color = "red";
-    let divButton = document.createElement("DIV");
-    divButton.setAttribute("class", "right divButton");
-    divButton.innerHTML = `<input type="button" value="Add to cart" data-name="${products[i].names}" onclick="adderToCart(${products[i].price})">`;
-    if (products[i].availability == "SOLD OUT")
-        divButton.innerHTML = `<input type="button" value="Notify" onclick="notify()">`;
-    divItem.appendChild(divButton);
-};
+    let buttonForAdd = document.createElement("input");
+    buttonForAdd.setAttribute("type", "button");
+    buttonForAdd.setAttribute("class", "buttons right divButton");
+    buttonForAdd.setAttribute("value", "Add to cart");
+    buttonForAdd.setAttribute("data-id", `${[i]}`);
+    if (products[i].availability == "SOLD OUT") {
+        buttonForAdd.setAttribute("value", "Notify");
+        buttonForAdd.setAttribute("onclick", "notify()");
+        buttonForAdd.setAttribute("class", "right divButton");
+    }
+    divItem.appendChild(buttonForAdd);
+}
 
+var myButton = document.getElementsByClassName('buttons');
+var ButtonLength = document.getElementsByClassName('buttons').length;
+for (let i = 0; i < ButtonLength; i++) {
+    myButton[i].addEventListener('click', adderToCart);
+}
+let itemCount = document.getElementById('itemCount');
+let localItemCount = localStorage.getItem('counter');
+let totalPrice = document.getElementById("totalPrice");
+let localPrice = localStorage.getItem('total');
+
+function emptyCountChecker() {
+    if (localStorage.length == 0) {
+        itemCount.innerHTML = 0;
+        totalPrice.innerHTML = 0;
+
+    } else {
+        itemCount.innerHTML = localStorage.getItem('counter');
+        totalPrice.innerHTML = localStorage.getItem('total');
+    }
+}
+emptyCountChecker();
+
+let buttonCart = document.getElementById('imgCart');
+buttonCart.addEventListener('mouseover', openCart);
 
 function notify() {
     let email = prompt("Please, enter your email. We will tell about arrival.");
 }
 
-function adderToCart(price, ) {
+function getCartData() {
+    return JSON.parse(localStorage.getItem('cart'));
+}
 
-    let noItems = document.getElementById("noItems");
-    if (noItems) {
-        noItems.remove();
+function setCartData(o) {
+    localStorage.setItem('cart', JSON.stringify(o));
+    return false;
+}
+
+function setCountProductsAndPrice(name, countNum) {
+    localStorage.setItem(name, countNum);
+}
+
+function adderToCart() {
+    this.disabled = true;
+
+    if (itemCount.innerHTML == 0) {
+        console.log("vot tut")
+        counter = 0;
+        setCountProductsAndPrice('counter', counter);
+    }
+    counter = Number(localStorage.getItem('counter')) + 1;
+    setCountProductsAndPrice('counter', counter);
+    itemCount.innerHTML = counter;
+
+    var cartData = getCartData() || {},
+        parentBox = this.parentNode,
+        itemId = this.getAttribute('data-id'),
+        itemTitle = parentBox.querySelector('.name').innerHTML,
+        itemPrice = parentBox.querySelector('.priceProduct').innerHTML;
+
+    if (totalPrice.innerHTML == 0) {
+        total = 0;
+        total += Number(itemPrice);
+        setCountProductsAndPrice('total', total);
+    } else {
+        total = Number(localStorage.getItem('total')) + Number(itemPrice);
+        setCountProductsAndPrice('total', total);
     }
 
-    let target = event.target;
-    let nameProduct = target.getAttribute('data-name');
-    let totalSpan = document.createElement("div");
-    let totalPrice = document.getElementById("totalPrice");
-    let divTotal = document.getElementById('itemInCart');
-
-    // number += 1;
-    target.setAttribute("data-element", `${number++}`)
-    total += price;
     totalPrice.innerHTML = total;
-    totalSpan.setAttribute("class", `${nameProduct}`);
-    totalSpan.innerHTML = `${number} x ${nameProduct}`;
-    divTotal.appendChild(totalSpan);
 
+    if (cartData.hasOwnProperty(itemId)) {
+        cartData[itemId][0] += 1;
+    } else {
+        cartData[itemId] = [1, itemTitle];
+    }
+    if (!setCartData(cartData)) {
+        this.disabled = false;
+    }
+    return false;
+}
 
-    counter += 1;
-    itemCount = document.getElementById("itemCount");
-    itemCount.innerHTML = `${counter}`;
+let cartCont = document.getElementById("itemInCart");
+
+function openCart(e) {
+    var cartData = getCartData(),
+        totalItems = '';
+    if (cartData !== null) {
+        totalItems = '<table class="shopping_list">';
+        for (var items in cartData) {
+            totalItems += '<tr>';
+            for (var i = 0; i < cartData[items].length; i++) {
+                totalItems += '<td>' + cartData[items][i] + '</td>';
+                if (!i % 2)
+                    totalItems += '<td>' + "x" + '</td>';
+            }
+            totalItems += '</tr>';
+        }
+        totalItems += '</table>';
+        cartCont.innerHTML = totalItems;
+    } else {
+        cartCont.innerHTML = 'No items in the cart!';
+    }
+    return false;
+}
+
+function clearStorage() {
+    if (itemCount.innerHTML == 0) {
+        alert("Your cart is empty:(");
+    } else {
+        let conf = confirm("Are sure? We hope you buy something in our shop:(");
+        if (conf) {
+            localStorage.clear();
+            emptyCountChecker();
+        }
+    }
 }

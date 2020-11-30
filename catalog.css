@@ -92,6 +92,19 @@ ul.breadcrumb li a[href="#"]:hover {
     top: 15px;
     border: 2px solid black;
     border-radius: 5px;
+    z-index: 4;
+}
+
+#clearStorage {
+    position: absolute;
+    right: 24px;
+    top: 90px;
+    /* opacity: 0; */
+    color: red;
+    font-size: 20px;
+    background: #202021;
+    border: none;
+    outline: none;
 }
 
 #imgCart:hover {
@@ -279,7 +292,7 @@ input[class="red"] {
     top: 200px;
 }
 
-.divButton>input {
+.divButton {
     width: 120px;
     height: 30px;
     border-radius: 10px;
@@ -287,9 +300,9 @@ input[class="red"] {
     font-size: large;
     font-weight: bold;
     background: indianred;
-    /* outline: none; */
+    outline: none;
 }
 
-.divButton>input:hover {
+.divButton:hover {
     box-shadow: 4px 4px 0px black;
 }
