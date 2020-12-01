@@ -29,51 +29,70 @@ let counter;
 let total;
 
 let products = [brownJacketHollywood, leatherJacket, pinkJacket, armoredFolder, trousersKillBill, jacketKillBill, swordKillBill, sweaterBrat, playerBrat, denimJacketBrat, soapFightClub, sunglassesFightClub, jacketFightClub, shoesHollywood];
-let containerForProducts = document.getElementById("products");
+
 
 for (let i = 0; i < products.length; i++) {
+    let containerForProducts = document.getElementById("products");
     let divItem = document.createElement('DIV');
     divItem.setAttribute("class", "item num");
     divItem.setAttribute("data-num", `${[i]}`);
     containerForProducts.appendChild(divItem);
-    let divPhoto = document.createElement("DIV");
-    divPhoto.setAttribute("class", "divPhoto");
-    divItem.appendChild(divPhoto);
-    let img1 = document.createElement("IMG");
-    img1.setAttribute("src", `assets/catalog/${products[i].photo1}.jpg`);
-    img1.setAttribute("class", "img1");
-    divPhoto.appendChild(img1);
-    let img2 = document.createElement("IMG");
-    img2.setAttribute("src", `assets/catalog/${products[i].photo2}.jpg`);
-    img2.setAttribute("class", "img2");
-    divPhoto.appendChild(img2);
-    let name = document.createElement('h2');
-    name.setAttribute("class", "name");
-    name.innerHTML = `${products[i].names}`;
-    divItem.appendChild(name);
-    let price = document.createElement('p');
-    price.setAttribute("class", "right price");
-    price.innerHTML = `Price: <span class="priceProduct">${products[i].price}</span>$`;
-    divItem.appendChild(price);
-    price.style.float = "right";
-    let divAvailability = document.createElement("DIV");
-    divAvailability.setAttribute("class", "right divAvailability");
-    divAvailability.innerHTML = `${products[i].availability}`;
-    divItem.appendChild(divAvailability);
-    if (products[i].availability == "SOLD OUT")
-        divAvailability.style.color = "red";
-    let buttonForAdd = document.createElement("input");
-    buttonForAdd.setAttribute("type", "button");
-    buttonForAdd.setAttribute("class", "buttons right divButton");
-    buttonForAdd.setAttribute("value", "Add to cart");
-    buttonForAdd.setAttribute("data-id", `${[i]}`);
-    if (products[i].availability == "SOLD OUT") {
-        buttonForAdd.setAttribute("value", "Notify");
-        buttonForAdd.setAttribute("onclick", "notify()");
-        buttonForAdd.setAttribute("class", "right divButton");
-    }
-    divItem.appendChild(buttonForAdd);
 }
+
+function itemMaker(arrProduct) {
+
+    for (let i = 0; i < arrProduct.length; i++) {
+
+        divItem = document.querySelectorAll(".item");
+        console.log(divItem[i]);
+        divItem[i].innerHTML = `<h2 class="name">${products[i].names}</h2>`
+
+        let divPhoto = document.createElement("DIV");
+        divPhoto.setAttribute("class", "divPhoto");
+        divItem[i].appendChild(divPhoto);
+        let img1 = document.createElement("IMG");
+        img1.setAttribute("src", `assets/catalog/${products[i].photo1}.jpg`);
+        img1.setAttribute("class", "img1");
+        divPhoto.appendChild(img1);
+        let img2 = document.createElement("IMG");
+        img2.setAttribute("src", `assets/catalog/${products[i].photo2}.jpg`);
+        img2.setAttribute("class", "img2");
+        divPhoto.appendChild(img2);
+        // let name = document.createElement('h2');
+        // name.setAttribute("class", "name");
+        // name.innerHTML = `${products[i].names}`;
+        // divItem[i].appendChild(name);
+        let price = document.createElement('p');
+        price.setAttribute("class", "right price");
+        price.innerHTML = `Price: <span class="priceProduct">${products[i].price}</span>$`;
+        divItem[i].appendChild(price);
+        price.style.float = "right";
+        let divAvailability = document.createElement("DIV");
+        divAvailability.setAttribute("class", "right divAvailability");
+        divAvailability.innerHTML = `${products[i].availability}`;
+        divItem[i].appendChild(divAvailability);
+        if (products[i].availability == "SOLD OUT")
+            divAvailability.style.color = "red";
+        let buttonForAdd = document.createElement("input");
+        buttonForAdd.setAttribute("type", "button");
+        buttonForAdd.setAttribute("class", "buttons right divButton");
+        buttonForAdd.setAttribute("value", "Add to cart");
+        buttonForAdd.setAttribute("data-id", `${[i]}`);
+        if (products[i].availability == "SOLD OUT") {
+            buttonForAdd.setAttribute("value", "Notify");
+            buttonForAdd.setAttribute("onclick", "notify()");
+            buttonForAdd.setAttribute("class", "right divButton");
+        }
+        divItem[i].appendChild(buttonForAdd);
+    }
+    let myButton = document.getElementsByClassName('buttons');
+    let ButtonLength = document.getElementsByClassName('buttons').length;
+    for (let i = 0; i < ButtonLength; i++) {
+        myButton[i].addEventListener('click', adderToCart);
+    }
+}
+itemMaker(products);
+
 
 let myButton = document.getElementsByClassName('buttons');
 let ButtonLength = document.getElementsByClassName('buttons').length;
@@ -182,7 +201,7 @@ function clearStorage() {
     if (itemCount.innerHTML == 0) {
         alert("Your cart is empty:(");
     } else {
-        let conf = confirm("Are sure? We hope you buy something in our shop:(");
+        let conf = confirm("Are you sure? We hope you buy something in our shop:(");
         if (conf) {
             localStorage.clear();
             emptyCountChecker();
@@ -269,4 +288,29 @@ function switcher(data) {
         div_num[i].style.display = "block";
         j++;
     }
+}
+
+// sort ASC and DESC by price
+
+let ascButton = document.getElementById('ASC');
+ascButton.addEventListener('click', sortPriceAsc);
+
+function asc(field, iffer) {
+    if (iffer == 1)
+        return (a, b) => a[field] > b[field] ? 1 : -1;
+    else
+        return (a, b) => a[field] > b[field] ? -1 : 1;
+}
+
+function sortPriceAsc() {
+    products = products.sort(asc('price', 1));
+    itemMaker(products);
+}
+
+let descButton = document.getElementById('DESC');
+descButton.addEventListener('click', sortPriceDesc);
+
+function sortPriceDesc() {
+    products = products.sort(asc('price', 0));
+    itemMaker(products);
 }
