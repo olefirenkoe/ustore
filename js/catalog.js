@@ -9,21 +9,21 @@ function MyObject(names, type, gender, availability, movie, price, photo1, photo
     this.photo2 = photo2;
 };
 
-let leatherJacket = new MyObject("Panin's Jacket", "jacket", "male", "IN STOCK", "Zhmurki", 120, "leatherJacket1", "leatherJacket2");
-let pinkJacket = new MyObject("Sergey Mikhalych's jacket", "jacket", "male", "IN STOCK", "Zhmurki", 200, "pinkJacket1", "pinkJacket2");
-let armoredFolder = new MyObject("Armored Folder", "other", "unisex", "SOLD OUT", "Zhmurki", 40, "armoredFolder1", "armoredFolder2");
-let trousersKillBill = new MyObject("Kill Bill Trousers", "trousers", "female", "IN STOCK", "Kill Bill", 80, "trousersKillBill1", "trousersKillBill2");
-let jacketKillBill = new MyObject("Kill Bill Jacket", "jacket", "female", "SOLD OUT", "Kill Bill", 35, "jacketKillBill1", "jacketKillBill2");
-let swordKillBill = new MyObject("Kill Bill Sword", "accessories", "unisex", "IN STOCK", "Kill Bill", 25, "swordKillBill1", "swordKillBill2");
-let sweaterBrat = new MyObject("Bodrov's Sweater", "sweater", "male", "IN STOCK", "Brat", 55, "sweaterBrat1", "sweaterBrat2");
-let playerBrat = new MyObject("Bodrov's Player", "accessories", "unisex", "IN STOCK", "Brat", 120, "playerBrat1", "playerBrat2");
-let denimJacketBrat = new MyObject("Seller's Denim Jacket", "Jacket", "unisex", "SOLD OUT", "Brat", 45, "denimJacketBrat1", "denimJacketBrat2");
-let soapFightClub = new MyObject("Soap by Fight Club", "other", "unisex", "IN STOCK", "Fight Club", 10, "soapFightClub1", "soapFightClub2");
-let sunglassesFightClub = new MyObject("Fight Club Sunglasses", "accessories", "unisex", "IN STOCK", "Fight Club", 100, "sunglassesFightClub1", "sunglassesFightClub2");
-let jacketFightClub = new MyObject("Fight Club Red Jacket", "jacket", "male", "IN STOCK", "Fight Club", 300, "jacketFightClub1", "jacketFightClub2");
-let shoesHollywood = new MyObject("Bratt Pitt's Shoes", "shoes", "male", "SOLD OUT", "Once Upon a Time in Hollywood", 75, "shoesHollywood1", "shoesHollywood2");
-let brownJacketHollywood = new MyObject("Leo's Brown Jacket", "jacket", "male", "IN STOCK", "Once Upon a Time in Hollywood", 210, "brownJacketHollywood1", "brownJacketHollywood2");
-// let topHollywood = new MyObject("Top Hippie Girl", "other", "unisex", "SOLD OUT", "Once Upon a Time in Hollywood", 20, "topHollywood1", "topHollywood2");
+let leatherJacket = new MyObject("Panin's Jacket", "jacket", "male", "IN STOCK", "Zhmurki", 120, "leatherJacket1", "leatherJacket2"),
+    pinkJacket = new MyObject("Sergey Mikhalych's jacket", "jacket", "male", "IN STOCK", "Zhmurki", 200, "pinkJacket1", "pinkJacket2"),
+    armoredFolder = new MyObject("Armored Folder", "other", "unisex", "SOLD OUT", "Zhmurki", 40, "armoredFolder1", "armoredFolder2"),
+    trousersKillBill = new MyObject("Kill Bill Trousers", "trousers", "female", "IN STOCK", "Kill Bill", 80, "trousersKillBill1", "trousersKillBill2"),
+    jacketKillBill = new MyObject("Kill Bill Jacket", "jacket", "female", "SOLD OUT", "Kill Bill", 35, "jacketKillBill1", "jacketKillBill2"),
+    swordKillBill = new MyObject("Kill Bill Sword", "accessories", "unisex", "IN STOCK", "Kill Bill", 25, "swordKillBill1", "swordKillBill2"),
+    sweaterBrat = new MyObject("Bodrov's Sweater", "sweater", "male", "IN STOCK", "Brat", 55, "sweaterBrat1", "sweaterBrat2"),
+    playerBrat = new MyObject("Bodrov's Player", "accessories", "unisex", "IN STOCK", "Brat", 120, "playerBrat1", "playerBrat2"),
+    denimJacketBrat = new MyObject("Seller's Denim Jacket", "Jacket", "unisex", "SOLD OUT", "Brat", 45, "denimJacketBrat1", "denimJacketBrat2"),
+    soapFightClub = new MyObject("Soap by Fight Club", "other", "unisex", "IN STOCK", "Fight Club", 10, "soapFightClub1", "soapFightClub2"),
+    sunglassesFightClub = new MyObject("Fight Club Sunglasses", "accessories", "unisex", "IN STOCK", "Fight Club", 100, "sunglassesFightClub1", "sunglassesFightClub2"),
+    jacketFightClub = new MyObject("Fight Club Red Jacket", "jacket", "male", "IN STOCK", "Fight Club", 300, "jacketFightClub1", "jacketFightClub2"),
+    shoesHollywood = new MyObject("Bratt Pitt's Shoes", "shoes", "male", "SOLD OUT", "Once Upon a Time in Hollywood", 75, "shoesHollywood1", "shoesHollywood2"),
+    brownJacketHollywood = new MyObject("Leo's Brown Jacket", "jacket", "male", "IN STOCK", "Once Upon a Time in Hollywood", 210, "brownJacketHollywood1", "brownJacketHollywood2");
+// let topHollywood = new MyObject("Top Hippie Girl", "other", "unisex", "IN STOCK", "Once Upon a Time in Hollywood", 20, "topHollywood1", "topHollywood2");
 
 let counter;
 let total;
@@ -33,14 +33,15 @@ let containerForProducts = document.getElementById("products");
 
 for (let i = 0; i < products.length; i++) {
     let divItem = document.createElement('DIV');
-    divItem.setAttribute("class", "item");
+    divItem.setAttribute("class", "item num");
+    divItem.setAttribute("data-num", `${[i]}`);
     containerForProducts.appendChild(divItem);
     let divPhoto = document.createElement("DIV");
-    divPhoto.setAttribute("class", "divPhoto")
+    divPhoto.setAttribute("class", "divPhoto");
     divItem.appendChild(divPhoto);
     let img1 = document.createElement("IMG");
     img1.setAttribute("src", `assets/catalog/${products[i].photo1}.jpg`);
-    img1.setAttribute("class", "img1")
+    img1.setAttribute("class", "img1");
     divPhoto.appendChild(img1);
     let img2 = document.createElement("IMG");
     img2.setAttribute("src", `assets/catalog/${products[i].photo2}.jpg`);
@@ -74,21 +75,20 @@ for (let i = 0; i < products.length; i++) {
     divItem.appendChild(buttonForAdd);
 }
 
-var myButton = document.getElementsByClassName('buttons');
-var ButtonLength = document.getElementsByClassName('buttons').length;
+let myButton = document.getElementsByClassName('buttons');
+let ButtonLength = document.getElementsByClassName('buttons').length;
 for (let i = 0; i < ButtonLength; i++) {
     myButton[i].addEventListener('click', adderToCart);
 }
-let itemCount = document.getElementById('itemCount');
-let localItemCount = localStorage.getItem('counter');
-let totalPrice = document.getElementById("totalPrice");
-let localPrice = localStorage.getItem('total');
+let itemCount = document.getElementById('itemCount'),
+    localItemCount = localStorage.getItem('counter'),
+    totalPrice = document.getElementById("totalPrice"),
+    localPrice = localStorage.getItem('total');
 
 function emptyCountChecker() {
     if (localStorage.length == 0) {
         itemCount.innerHTML = 0;
         totalPrice.innerHTML = 0;
-
     } else {
         itemCount.innerHTML = localStorage.getItem('counter');
         totalPrice.innerHTML = localStorage.getItem('total');
@@ -120,7 +120,6 @@ function adderToCart() {
     this.disabled = true;
 
     if (itemCount.innerHTML == 0) {
-        console.log("vot tut")
         counter = 0;
         setCountProductsAndPrice('counter', counter);
     }
@@ -128,7 +127,7 @@ function adderToCart() {
     setCountProductsAndPrice('counter', counter);
     itemCount.innerHTML = counter;
 
-    var cartData = getCartData() || {},
+    let cartData = getCartData() || {},
         parentBox = this.parentNode,
         itemId = this.getAttribute('data-id'),
         itemTitle = parentBox.querySelector('.name').innerHTML,
@@ -142,7 +141,6 @@ function adderToCart() {
         total = Number(localStorage.getItem('total')) + Number(itemPrice);
         setCountProductsAndPrice('total', total);
     }
-
     totalPrice.innerHTML = total;
 
     if (cartData.hasOwnProperty(itemId)) {
@@ -189,5 +187,86 @@ function clearStorage() {
             localStorage.clear();
             emptyCountChecker();
         }
+    }
+}
+// pagination
+
+let count = products.length;
+let cnt = 6;
+let cnt_page = Math.ceil(count / cnt);
+let paginator = document.querySelector(".paginator");
+let page = "";
+
+page += "<span class='pagination' id='left'><</span>"
+for (let i = 0; i < cnt_page; i++) {
+    page += `<span data-page="${i*cnt}" data-number='${i+1}' class="pagination" id="page${i+1}">${i+1}</span>`;
+}
+page += "<span class='pagination' id='right'>></span>"
+paginator.innerHTML = page;
+
+let div_num = document.querySelectorAll(".num");
+for (let i = 0; i < div_num.length; i++) {
+    if (i < cnt) {
+        div_num[i].style.display = "block";
+    }
+}
+
+let main_page = document.getElementById("page1");
+main_page.classList.add("paginator_active");
+
+let paginationss = document.querySelectorAll(".pagination");
+for (let i = 0; i < paginationss.length; i++) {
+    paginationss[i].addEventListener('click', pagination);
+}
+
+function pagination() {
+    let e = event;
+    let target = e.target;
+    let id = target.id;
+    let numberForSwitch = main_page.dataset.number;
+
+    if (target.tagName.toLowerCase() != "span") return;
+
+    if (id == "left") {
+        if (main_page.dataset.number == 1) return;
+        else {
+            styledForPagination(`page${Number(numberForSwitch)-1}`);
+
+            let data_page = main_page.dataset.page;
+            switcher(data_page);
+        }
+    } else if (id == "right") {
+        if (main_page.dataset.number == cnt_page) return;
+        else {
+            styledForPagination(`page${Number(numberForSwitch)+1}`);
+
+            let data_page = main_page.dataset.page;
+            switcher(data_page);
+        }
+    } else {
+        styledForPagination(id);
+
+        let data_page = +target.dataset.page;
+        switcher(data_page);
+    }
+}
+
+function styledForPagination(elem) {
+    main_page.classList.remove("paginator_active");
+    main_page = document.getElementById(elem);
+    main_page.classList.add("paginator_active");
+}
+
+function switcher(data) {
+    let j = 0;
+    for (let i = 0; i < div_num.length; i++) {
+        let data_num = div_num[i].dataset.num;
+        if (data_num <= data || data_num >= data)
+            div_num[i].style.display = "none";
+    }
+    for (let i = data; i < div_num.length; i++) {
+        if (j >= cnt) break;
+        div_num[i].style.display = "block";
+        j++;
     }
 }

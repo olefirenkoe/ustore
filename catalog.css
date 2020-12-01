@@ -306,3 +306,24 @@ input[class="red"] {
 .divButton:hover {
     box-shadow: 4px 4px 0px black;
 }
+
+.num {
+    display: none;
+}
+
+.paginator {
+    margin: 20px;
+    text-align: center;
+    font-size: 20px;
+    /* line-height: 150%; */
+}
+
+.paginator>span {
+    display: inline-block;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.paginator_active {
+    color: red;
+}
