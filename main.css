@@ -71,19 +71,17 @@ footer {
     height: 50px;
     background: #91241e;
     font-size: 10px;
-    position: sticky;
 }
 
 .copyright,
 .privacy {
-    position: absolute;
-    top: 20px;
+    margin: 20px 20px;
 }
 
 .copyright {
-    left: 20px;
+    float: left;
 }
 
 .privacy {
-    right: 20px;
+    float: right;
 }

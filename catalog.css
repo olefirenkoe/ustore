@@ -49,9 +49,9 @@ ul.breadcrumb li a[href="#"]:hover {
     height: max-content;
     display: grid;
     grid-template-columns: 20% 45% 35%;
-    grid-template-rows: 120px auto;
+    grid-template-rows: 120px auto 120px;
     grid-gap: 10PX;
-    grid-template-areas: "producer producer cart" "filter products products";
+    grid-template-areas: "producer producer cart" "filter products products" "paginator paginator paginator";
 }
 
 #producer {
@@ -73,6 +73,10 @@ ul.breadcrumb li a[href="#"]:hover {
 #products {
     grid-area: products;
     background: #303030;
+}
+
+.paginator {
+    grid-area: paginator;
 }
 
 .pagination {
