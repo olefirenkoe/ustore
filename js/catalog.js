@@ -10,26 +10,27 @@ function MyObject(names, type, gender, availability, movie, price, photo1, photo
     this.id = id;
 };
 
-let leatherJacket = new MyObject("Panin's Jacket", "jacket", "male", "IN STOCK", "Zhmurki", 120, "leatherJacket1", "leatherJacket2", 0),
-    pinkJacket = new MyObject("Sergey Mikhalych's jacket", "jacket", "male", "IN STOCK", "Zhmurki", 200, "pinkJacket1", "pinkJacket2", 1),
+let leatherJacket = new MyObject("Panin's Jacket", "jackets", "forman", "IN STOCK", "Zhmurki", 120, "leatherJacket1", "leatherJacket2", 0),
+    pinkJacket = new MyObject("Sergey Mikhalych's Blazer", "blazers", "forman", "IN STOCK", "Zhmurki", 200, "pinkJacket1", "pinkJacket2", 1),
     armoredFolder = new MyObject("Armored Folder", "other", "unisex", "SOLD OUT", "Zhmurki", 40, "armoredFolder1", "armoredFolder2", 2),
     trousersKillBill = new MyObject("Kill Bill Trousers", "trousers", "female", "IN STOCK", "Kill Bill", 80, "trousersKillBill1", "trousersKillBill2", 3),
-    jacketKillBill = new MyObject("Kill Bill Jacket", "jacket", "female", "SOLD OUT", "Kill Bill", 35, "jacketKillBill1", "jacketKillBill2", 4),
+    jacketKillBill = new MyObject("Kill Bill Jacket", "jackets", "female", "SOLD OUT", "Kill Bill", 35, "jacketKillBill1", "jacketKillBill2", 4),
     swordKillBill = new MyObject("Kill Bill Sword", "accessories", "unisex", "IN STOCK", "Kill Bill", 25, "swordKillBill1", "swordKillBill2", 5),
-    sweaterBrat = new MyObject("Bodrov's Sweater", "sweater", "male", "IN STOCK", "Brat", 55, "sweaterBrat1", "sweaterBrat2", 6),
+    sweaterBrat = new MyObject("Bodrov's Sweater", "sweater", "forman", "IN STOCK", "Brat", 55, "sweaterBrat1", "sweaterBrat2", 6),
     playerBrat = new MyObject("Bodrov's Player", "accessories", "unisex", "IN STOCK", "Brat", 120, "playerBrat1", "playerBrat2", 7),
-    denimJacketBrat = new MyObject("Seller's Denim Jacket", "Jacket", "unisex", "SOLD OUT", "Brat", 45, "denimJacketBrat1", "denimJacketBrat2", 8),
+    denimJacketBrat = new MyObject("Seller's Denim Jacket", "Jackets", "unisex", "SOLD OUT", "Brat", 45, "denimJacketBrat1", "denimJacketBrat2", 8),
     soapFightClub = new MyObject("Soap by Fight Club", "other", "unisex", "IN STOCK", "Fight Club", 10, "soapFightClub1", "soapFightClub2", 9),
     sunglassesFightClub = new MyObject("Fight Club Sunglasses", "accessories", "unisex", "IN STOCK", "Fight Club", 100, "sunglassesFightClub1", "sunglassesFightClub2", 10),
-    jacketFightClub = new MyObject("Fight Club Red Jacket", "jacket", "male", "IN STOCK", "Fight Club", 300, "jacketFightClub1", "jacketFightClub2", 11),
-    shoesHollywood = new MyObject("Bratt Pitt's Shoes", "shoes", "male", "SOLD OUT", "Once Upon a Time in Hollywood", 75, "shoesHollywood1", "shoesHollywood2", 12),
-    brownJacketHollywood = new MyObject("Leo's Brown Jacket", "jacket", "male", "IN STOCK", "Once Upon a Time in Hollywood", 210, "brownJacketHollywood1", "brownJacketHollywood2", 13);
+    jacketFightClub = new MyObject("Fight Club Red Jacket", "jackets", "forman", "IN STOCK", "Fight Club", 300, "jacketFightClub1", "jacketFightClub2", 11),
+    shoesHollywood = new MyObject("Bratt Pitt's Shoes", "shoes", "forman", "SOLD OUT", "Once Upon a Time in Hollywood", 75, "shoesHollywood1", "shoesHollywood2", 12),
+    brownJacketHollywood = new MyObject("Leo's Brown Jacket", "jackets", "forman", "IN STOCK", "Once Upon a Time in Hollywood", 210, "brownJacketHollywood1", "brownJacketHollywood2", 13);
 // let topHollywood = new MyObject("Top Hippie Girl", "other", "unisex", "IN STOCK", "Once Upon a Time in Hollywood", 20, "topHollywood1", "topHollywood2");
 
 let counter;
 let total;
 
 let products = [brownJacketHollywood, leatherJacket, pinkJacket, armoredFolder, trousersKillBill, jacketKillBill, swordKillBill, sweaterBrat, playerBrat, denimJacketBrat, soapFightClub, sunglassesFightClub, jacketFightClub, shoesHollywood];
+let productsClon = [brownJacketHollywood, leatherJacket, pinkJacket, armoredFolder, trousersKillBill, jacketKillBill, swordKillBill, sweaterBrat, playerBrat, denimJacketBrat, soapFightClub, sunglassesFightClub, jacketFightClub, shoesHollywood];
 
 function divForItemMaker(massiv = products) {
     for (let i = 0; i < massiv.length; i++) {
@@ -47,9 +48,10 @@ let cnt = 6;
 let cnt_page = Math.ceil(count / cnt);
 let paginator = document.querySelector(".paginator");
 let page = "";
+let main_page;
 
 function itemMaker(massiv = products, forPagination) {
-    console.log(massiv.length);
+    // console.log("itemMaker");
     for (let i = 0; i < massiv.length; i++) {
         divItem = document.querySelectorAll(".item");
         divItem[i].innerHTML = `<h2 class="name">${massiv[i].names}</h2>`
@@ -216,6 +218,7 @@ function clearStorage() {
 }
 // pagination
 
+
 function firstPagePagination(massivProduct = products) {
     count = massivProduct.length;
     cnt = 6;
@@ -237,7 +240,7 @@ function firstPagePagination(massivProduct = products) {
     }
 
 
-    let main_page = document.getElementById("page1");
+    main_page = document.getElementById("page1");
     main_page.classList.add("paginator_active");
     let paginationss = document.querySelectorAll(".pagination");
     for (let i = 0; i < paginationss.length; i++) {
@@ -310,9 +313,9 @@ function asc(field, iffer) {
 }
 
 function sortPriceAsc() {
-    if ((disabledSOLD == true) || (disabledInStock == true)) {
+    if ((disabledSOLD == true) || (disabledInStock == true) || (disabledGender == true)) {
         products = sortedProducts;
-        sortByPriceAfterAvalib = true;
+        sortByPriceAfterAnother = true;
         console.log("dasdas")
     }
     products = products.sort(asc('price', 1));
@@ -325,7 +328,7 @@ descButton.addEventListener('click', sortPriceDesc);
 function sortPriceDesc() {
     if ((disabledSOLD == true) || (disabledInStock == true)) {
         products = sortedProducts;
-        sortByPriceAfterAvalib = true;
+        sortByPriceAfterAnother = true;
         console.log("dasdas")
     }
     products = products.sort(asc('price', 0));
@@ -343,24 +346,29 @@ function sortPriceDesc() {
 
 // console.log(randomMassiv);
 
+
+// function for any sorting 
+let lengthMassiv = products.length;
+
+function sortAvailability(key, status) {
+    if (sortByPriceAfterAnother == true) {
+        console.log("das")
+        products = [brownJacketHollywood, leatherJacket, pinkJacket, armoredFolder, trousersKillBill, jacketKillBill, swordKillBill, sweaterBrat, playerBrat, denimJacketBrat, soapFightClub, sunglassesFightClub, jacketFightClub, shoesHollywood];
+    }
+    for (let i = 0; i < lengthMassiv; i++) {
+        divItem[i].remove();
+    }
+    sortedProducts = products.filter(function(product) {
+        return product[key].includes(status);
+    });
+    divForItemMaker(sortedProducts);
+    itemMaker(sortedProducts, sortedProducts);
+    lengthMassiv = sortedProducts.length;
+}
+
 // sort by availability
 
-// console.log(products[2].availability.includes('IN STOCK'));
-
-
-
-
-// let newProducts = products.filter(function(product) {
-//     return product.availability.includes('IN STOCK');
-// });
-// console.log(newProducts);
-
-
-
-
-
-// products = products.sort(asc('price', 1));
-let sortByPriceAfterAvalib = false;
+let sortByPriceAfterAnother = false;
 let sortedProducts;
 let disabledInStock = false;
 let disabledSOLD = false;
@@ -373,7 +381,7 @@ soldButton.addEventListener('click', soldSort);
 function inStockSort() {
 
     if (disabledInStock == false) {
-        sortAvailability('IN STOCK');
+        sortAvailability('availability', 'IN STOCK');
         disabledInStock = true;
         disabledSOLD = false;
     }
@@ -381,25 +389,81 @@ function inStockSort() {
 
 function soldSort() {
     if (disabledSOLD == false) {
-        sortAvailability('SOLD OUT');
+        sortAvailability('availability', 'SOLD OUT');
         disabledSOLD = true;
         disabledInStock = false;
     }
 }
-let lengthMassiv = products.length;
 
-function sortAvailability(status) {
-    if (sortByPriceAfterAvalib == true) {
-        console.log("das")
-        products = [brownJacketHollywood, leatherJacket, pinkJacket, armoredFolder, trousersKillBill, jacketKillBill, swordKillBill, sweaterBrat, playerBrat, denimJacketBrat, soapFightClub, sunglassesFightClub, jacketFightClub, shoesHollywood];
+
+// sort by gender and typr of clothes 
+let disabledGender;
+
+
+let gender = document.getElementsByName('gender');
+
+for (let i = 0; i < gender.length; i++) {
+    gender[i].addEventListener('click', checker);
+}
+// let inputClothes = document.querySelectorAll('.checkboxC')
+let typeOfClothes = document.getElementsByName('typeOfClothes');
+
+for (let i = 0; i < typeOfClothes.length; i++) {
+    typeOfClothes[i].addEventListener('click', checker);
+}
+
+let forchecker;
+
+function checker() {
+    let checkboxChecked = false;
+    if (this.type == "radio") {
+        disabledGender = true;
+        for (let i = 0; i < gender.length; i++) {
+            if (gender[i].type == "radio" && gender[i].checked) {
+                if (this.checked) {
+                    let checkValue = this.value;
+                    sortAvailability('gender', checkValue);
+                }
+            }
+        }
+    } else if (this.type == "checkbox") {
+        let j = 0;
+        for (let i = 0; i < typeOfClothes.length; i++) {
+            if (!typeOfClothes[i].checked) {
+                j++;
+                if (j == typeOfClothes.length) {
+                    makeItemGrearAgain();
+                }
+
+                // }
+                // console.log(typeOfClothes[0].checked)
+                // if (j == typeOfClothes.length) {
+                //     console.log("bingo");
+                // }
+            }
+        }
+
+        if (checkboxChecked) {
+            console.log("delete");
+        }
+        for (let i = 0; i < typeOfClothes.length; i++) {
+            if (typeOfClothes[i].type == "checkbox" && typeOfClothes[i].checked) {
+                let checkValue = this.value;
+                sortAvailability('type', checkValue);
+                this.checkboxChecked = true;
+            }
+        }
     }
-    for (let i = 0; i < lengthMassiv; i++) {
+}
+
+function makeItemGrearAgain() {
+    console.log(divItem.length)
+    for (let i = 0; i < divItem.length; i++) {
         divItem[i].remove();
     }
-    sortedProducts = products.filter(function(product) {
-        return product.availability.includes(status);
-    });
-    divForItemMaker(sortedProducts);
-    itemMaker(sortedProducts, sortedProducts);
-    lengthMassiv = sortedProducts.length;
+    products = productsClon;
+    divForItemMaker(products);
+    itemMaker();
 }
+
+// sort by type of clothes
