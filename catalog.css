@@ -5,11 +5,11 @@
 }
 
 ul.breadcrumb {
-    padding-top: 0px;
+    padding-top: 10px;
     padding-bottom: 5px;
     line-height: 20px;
     list-style: none;
-    background-color: #d7d6ca;
+    background-color: #666666;
 }
 
 ul.breadcrumb li {
@@ -30,10 +30,11 @@ ul.breadcrumb li a {
 ul.breadcrumb li a:hover {
     color: #01447e;
     text-decoration: underline;
+    text-shadow: none;
 }
 
 ul.breadcrumb li a[href="#"] {
-    color: grey;
+    color: black;
 }
 
 ul.breadcrumb li a[href="#"]:hover {
@@ -46,10 +47,10 @@ ul.breadcrumb li a[href="#"]:hover {
 
 #container {
     width: calc(100% - 50px);
-    height: calc(100% - 150px);
+    height: max-content;
     display: grid;
     grid-template-columns: 20% 45% 35%;
-    grid-template-rows: 120px 84% 120px;
+    grid-template-rows: 120px 1000px 120px;
     grid-gap: 10PX;
     grid-template-areas: "producer producer cart" "filter products products" "paginator paginator paginator";
 }
@@ -234,14 +235,14 @@ h2.gender {
 }
 
 input[class="red"] {
-    color: tomato;
+    color: red;
 }
 
 #products {
     /* height: 100%; */
     display: flex;
     flex-wrap: wrap;
-    height: max-content;
+    height: auto;
     /* justify-content: start; */
 }
 
