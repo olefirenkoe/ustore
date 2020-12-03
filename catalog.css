@@ -46,10 +46,10 @@ ul.breadcrumb li a[href="#"]:hover {
 
 #container {
     width: calc(100% - 50px);
-    height: max-content;
+    height: calc(100% - 150px);
     display: grid;
     grid-template-columns: 20% 45% 35%;
-    grid-template-rows: 120px auto 120px;
+    grid-template-rows: 120px 84% 120px;
     grid-gap: 10PX;
     grid-template-areas: "producer producer cart" "filter products products" "paginator paginator paginator";
 }
@@ -149,10 +149,20 @@ ul.breadcrumb li a[href="#"]:hover {
     opacity: 1;
 }
 
+h2.gender {
+    text-align: left;
+    margin-left: 100px;
+}
+
+.gender {
+    margin-left: 30px;
+}
+
 
 /* block for check producer and gender*/
 
-#producer {
+
+/* #producer {
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-areas: "movie gender";
@@ -181,8 +191,8 @@ ul.breadcrumb li a[href="#"]:hover {
     /* border: 2px solid #202021;
     border-radius: 10px;
     padding: 2px;
-    margin: 2px; */
-}
+    margin: 2px; 
+}*/
 
 .checkflex {
     display: flex;
@@ -228,11 +238,16 @@ input[class="red"] {
 }
 
 #products {
+    /* height: 100%; */
     display: flex;
     flex-wrap: wrap;
+    height: max-content;
+    /* justify-content: start; */
 }
 
 .item {
+    /* justify-self: start;
+    align-self: start; */
     margin: 10px auto;
     width: 390px;
     height: 300px;
@@ -305,6 +320,10 @@ input[class="red"] {
     font-weight: bold;
     background: indianred;
     outline: none;
+}
+
+input[value="Notify"] {
+    background-color: lightblue;
 }
 
 .divButton:hover {
