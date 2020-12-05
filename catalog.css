@@ -9,7 +9,7 @@ ul.breadcrumb {
     padding-bottom: 5px;
     line-height: 20px;
     list-style: none;
-    background-color: #666666;
+    background-color: #232323;
 }
 
 ul.breadcrumb li {
@@ -19,7 +19,7 @@ ul.breadcrumb li {
 }
 
 ul.breadcrumb li+li:before {
-    color: black;
+    color: white;
     content: "/\00a0";
 }
 
@@ -34,7 +34,7 @@ ul.breadcrumb li a:hover {
 }
 
 ul.breadcrumb li a[href="#"] {
-    color: black;
+    color: grey;
 }
 
 ul.breadcrumb li a[href="#"]:hover {
@@ -358,4 +358,18 @@ input[value="Notify"] {
 
 .paginator_active {
     color: red;
+}
+
+#rec {
+    text-align: center;
+    margin: 0 auto;
+    border: 2px solid black;
+    width: 210px;
+    height: max-content;
+    border-radius: 5px;
+}
+
+.recImg {
+    width: 190px;
+    height: 200px;
 }

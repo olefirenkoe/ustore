@@ -31,6 +31,7 @@ let total;
 
 let products = [brownJacketHollywood, leatherJacket, pinkJacket, armoredFolder, trousersKillBill, jacketKillBill, swordKillBill, sweaterBrat, playerBrat, denimJacketBrat, soapFightClub, sunglassesFightClub, jacketFightClub, shoesHollywood];
 let productsClon = [brownJacketHollywood, leatherJacket, pinkJacket, armoredFolder, trousersKillBill, jacketKillBill, swordKillBill, sweaterBrat, playerBrat, denimJacketBrat, soapFightClub, sunglassesFightClub, jacketFightClub, shoesHollywood];
+let prostotest = [brownJacketHollywood, leatherJacket, pinkJacket, armoredFolder, trousersKillBill, jacketKillBill, swordKillBill, sweaterBrat, playerBrat, denimJacketBrat, soapFightClub, sunglassesFightClub, jacketFightClub, shoesHollywood];
 
 function divForItemMaker(massiv = products) {
     for (let i = 0; i < massiv.length; i++) {
@@ -52,7 +53,7 @@ let page = "";
 let main_page;
 
 function itemMaker(massiv = products, forPagination) {
-    // console.log("itemMaker");
+    console.log("itemmaker")
     for (let i = 0; i < massiv.length; i++) {
         divItem = document.querySelectorAll(".item");
         divItem[i].innerHTML = `<h2 class="name">${massiv[i].names}</h2>`
@@ -141,7 +142,6 @@ function adderButton() {
         myButton[i].addEventListener('click', adderToCart);
     }
 }
-
 
 let itemCount = document.getElementById('itemCount'),
     localItemCount = localStorage.getItem('counter'),
@@ -331,17 +331,6 @@ function sortPriceDesc() {
     itemMaker();
 }
 
-// random item in recomendation block
-
-
-// let randomMassiv = products;
-// randomMassiv = randomMassiv.sort(function() {
-//     return 0.5 - Math.random();
-// })
-
-
-
-
 // function for any sorting 
 
 let lengthMassiv = products.length;
@@ -402,8 +391,6 @@ function soldSort() {
 
 // sort by gender and typr of clothes 
 let disabledGender;
-
-
 let gender = document.getElementsByName('gender');
 
 for (let i = 0; i < gender.length; i++) {
@@ -418,7 +405,7 @@ for (let i = 0; i < typeOfClothes.length; i++) {
 
 let firstCheckbox = true;
 let sortedTypeOfClothes = [];
-// let allTypeOfCLothes = [];
+let offTypeMassiv = [];
 
 function checker() {
     if (this.type == "radio") {
@@ -463,17 +450,21 @@ function checker() {
                 divForItemMaker(sortedTypeOfClothes);
                 itemMaker(sortedTypeOfClothes, sortedTypeOfClothes);
             }
-            if (typeOfClothes[i].checked == false) {
-                console.log(1);
-            }
+            //     if (typeOfClothes[i].checked == false) {
+            //         console.log(1);
+            //         let offTypeClothesValue = typeOfClothes[i].value;
+            //         offTypeMassiv = productsClon.filter(function(product) {
+            //             return product.type.includes(offTypeClothesValue);
+            //         });
+            //         for (let i = 0; i < offTypeMassiv.length; i++) {
+            //             let idRemove = offTypeMassiv[i].id;
+            //             let itemForRemove = document.getElementById(idRemove);
+            //             if (itemForRemove) {
+            //                 itemForRemove.remove();
+            //             }
+            //         }
 
-            //     let offTypeClothesValue = typeOfClothes[i].value;
-
-            //     offTypeMassiv = productsClon.filter(function(product) {
-            //         return product.type.includes(offTypeClothesValue);
-            //     });
-
-            //     let idRemove = offTypeMassiv[i].id;
+            //     
             //     if (idRemove) {
             //         let itemForRemove = document.getElementById(idRemove);
             //         itemForRemove.remove();
@@ -487,10 +478,10 @@ function checker() {
 
 
 
+            //     }
         }
     }
 }
-
 
 function getUniqTags(tags) {
     var results = [];
@@ -506,10 +497,11 @@ function getUniqTags(tags) {
     return results;
 }
 
-
-
-
 function makeItemGrearAgain() {
+    let allInput = document.getElementsByTagName('input');
+    for (let i = 0; i < allInput.length; i++) {
+        allInput[i].checked = false;
+    }
     if (resetStyle == true) {
         reset.style.transform = "rotate(360deg)";
         resetStyle = false;
@@ -517,18 +509,12 @@ function makeItemGrearAgain() {
         reset.style.transform = "rotate(-360deg)";
         resetStyle = true;
     }
+
     for (let i = 0; i < divItem.length; i++) {
         divItem[i].remove();
-    }
-    products = productsClon;
-    divForItemMaker(products);
+    };
+    divForItemMaker();
     itemMaker();
-
-    let allInput = document.getElementsByTagName('input');
-    for (let i = 0; i < allInput.length; i++) {
-        allInput[i].checked = false;
-    }
-
 }
 
 // reset all type of filtres
