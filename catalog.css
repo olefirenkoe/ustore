@@ -100,6 +100,14 @@ ul.breadcrumb li a[href="#"]:hover {
     z-index: 4;
 }
 
+#reset {
+    filter: invert(100);
+    float: right;
+    height: 40px;
+    margin: 20px 70px;
+    transition: 2s;
+}
+
 #clearStorage {
     position: absolute;
     right: 24px;
@@ -129,7 +137,7 @@ ul.breadcrumb li a[href="#"]:hover {
     top: 15px;
     padding: 10px;
     background-color: #303030;
-    width: 75%;
+    width: 65%;
     height: max-content;
     border-radius: 5px;
     border: 5px solid #232529;

@@ -38,6 +38,7 @@ function divForItemMaker(massiv = products) {
         let divItem = document.createElement('DIV');
         divItem.setAttribute("class", "item num");
         divItem.setAttribute("data-num", `${[i]}`);
+        divItem.setAttribute("id", `${massiv[i].id}`)
         containerForProducts.appendChild(divItem);
     }
 }
@@ -123,10 +124,7 @@ function adderToCart() {
     totalPrice.innerHTML = total;
 
     if (cartData.hasOwnProperty(itemId)) {
-        console.log(cartData);
         cartData[itemId][0] += 1;
-        console.log(1);
-
     } else {
         cartData[itemId] = [1, itemTitle];
     }
@@ -316,7 +314,6 @@ function sortPriceAsc() {
     if ((disabledSOLD == true) || (disabledInStock == true) || (disabledGender == true)) {
         products = sortedProducts;
         sortByPriceAfterAnother = true;
-        console.log("dasdas")
     }
     products = products.sort(asc('price', 1));
     itemMaker();
@@ -329,7 +326,6 @@ function sortPriceDesc() {
     if ((disabledSOLD == true) || (disabledInStock == true)) {
         products = sortedProducts;
         sortByPriceAfterAnother = true;
-        console.log("dasdas")
     }
     products = products.sort(asc('price', 0));
     itemMaker();
@@ -344,15 +340,15 @@ function sortPriceDesc() {
 // })
 
 
-// console.log(randomMassiv);
 
 
 // function for any sorting 
-let lengthMassiv = products.length;
 
-function sortAvailability(key, status) {
+let lengthMassiv = products.length;
+let sortedProducts;
+
+function sorting(key, status) {
     if (sortByPriceAfterAnother == true) {
-        console.log("das")
         products = [brownJacketHollywood, leatherJacket, pinkJacket, armoredFolder, trousersKillBill, jacketKillBill, swordKillBill, sweaterBrat, playerBrat, denimJacketBrat, soapFightClub, sunglassesFightClub, jacketFightClub, shoesHollywood];
     }
     for (let i = 0; i < lengthMassiv; i++) {
@@ -364,12 +360,12 @@ function sortAvailability(key, status) {
     divForItemMaker(sortedProducts);
     itemMaker(sortedProducts, sortedProducts);
     lengthMassiv = sortedProducts.length;
+
 }
 
 // sort by availability
 
 let sortByPriceAfterAnother = false;
-let sortedProducts;
 let disabledInStock = false;
 let disabledSOLD = false;
 let instockButton = document.getElementById('inStock');
@@ -381,17 +377,25 @@ soldButton.addEventListener('click', soldSort);
 function inStockSort() {
 
     if (disabledInStock == false) {
-        sortAvailability('availability', 'IN STOCK');
+        sorting('availability', 'IN STOCK');
         disabledInStock = true;
         disabledSOLD = false;
+        let allInput = document.getElementsByTagName('input');
+        for (let i = 0; i < allInput.length; i++) {
+            allInput[i].checked = false;
+        }
     }
 }
 
 function soldSort() {
     if (disabledSOLD == false) {
-        sortAvailability('availability', 'SOLD OUT');
+        sorting('availability', 'SOLD OUT');
         disabledSOLD = true;
         disabledInStock = false;
+        let allInput = document.getElementsByTagName('input');
+        for (let i = 0; i < allInput.length; i++) {
+            allInput[i].checked = false;
+        }
     }
 }
 
@@ -412,21 +416,31 @@ for (let i = 0; i < typeOfClothes.length; i++) {
     typeOfClothes[i].addEventListener('click', checker);
 }
 
-let forchecker;
+let firstCheckbox = true;
+let sortedTypeOfClothes = [];
+// let allTypeOfCLothes = [];
 
 function checker() {
-    let checkboxChecked = false;
     if (this.type == "radio") {
+        let allCheckbox = document.getElementsByClassName('typeOfclothes');
+        for (let i = 0; i < allCheckbox.length; i++) {
+            allCheckbox[i].checked = false;
+        }
         disabledGender = true;
         for (let i = 0; i < gender.length; i++) {
             if (gender[i].type == "radio" && gender[i].checked) {
                 if (this.checked) {
                     let checkValue = this.value;
-                    sortAvailability('gender', checkValue);
+                    sorting('gender', checkValue);
                 }
             }
         }
     } else if (this.type == "checkbox") {
+
+        let allRadio = document.getElementsByClassName("radioGender");
+        for (let i = 0; i < allRadio.length; i++) {
+            allRadio[i].checked = false;
+        }
         let j = 0;
         for (let i = 0; i < typeOfClothes.length; i++) {
             if (!typeOfClothes[i].checked) {
@@ -434,36 +448,91 @@ function checker() {
                 if (j == typeOfClothes.length) {
                     makeItemGrearAgain();
                 }
-
-                // }
-                // console.log(typeOfClothes[0].checked)
-                // if (j == typeOfClothes.length) {
-                //     console.log("bingo");
-                // }
             }
-        }
-
-        if (checkboxChecked) {
-            console.log("delete");
         }
         for (let i = 0; i < typeOfClothes.length; i++) {
             if (typeOfClothes[i].type == "checkbox" && typeOfClothes[i].checked) {
+                for (let i = 0; i < divItem.length; i++) {
+                    divItem[i].remove();
+                }
                 let checkValue = this.value;
-                sortAvailability('type', checkValue);
-                this.checkboxChecked = true;
+                sortedTypeOfClothes = sortedTypeOfClothes.concat(productsClon.filter(function(product) {
+                    return product.type.includes(checkValue);
+                }));
+                sortedTypeOfClothes = getUniqTags(sortedTypeOfClothes);
+                divForItemMaker(sortedTypeOfClothes);
+                itemMaker(sortedTypeOfClothes, sortedTypeOfClothes);
             }
+            if (typeOfClothes[i].checked == false) {
+                console.log(1);
+            }
+
+            //     let offTypeClothesValue = typeOfClothes[i].value;
+
+            //     offTypeMassiv = productsClon.filter(function(product) {
+            //         return product.type.includes(offTypeClothesValue);
+            //     });
+
+            //     let idRemove = offTypeMassiv[i].id;
+            //     if (idRemove) {
+            //         let itemForRemove = document.getElementById(idRemove);
+            //         itemForRemove.remove();
+            //     }
+
+            //     // if (index > -1) {
+            //     // sortedTypeOfClothes.splice(index, 1);
+            //     // }
+            //     // console.log(sortedTypeOfClothes);
+            // }
+
+
+
         }
     }
 }
 
+
+function getUniqTags(tags) {
+    var results = [];
+
+    tags.forEach(function(value) {
+
+
+        if (results.indexOf(value) === -1) {
+            results.push(value);
+        }
+    });
+
+    return results;
+}
+
+
+
+
 function makeItemGrearAgain() {
-    console.log(divItem.length)
+    if (resetStyle == true) {
+        reset.style.transform = "rotate(360deg)";
+        resetStyle = false;
+    } else {
+        reset.style.transform = "rotate(-360deg)";
+        resetStyle = true;
+    }
     for (let i = 0; i < divItem.length; i++) {
         divItem[i].remove();
     }
     products = productsClon;
     divForItemMaker(products);
     itemMaker();
+
+    let allInput = document.getElementsByTagName('input');
+    for (let i = 0; i < allInput.length; i++) {
+        allInput[i].checked = false;
+    }
+
 }
 
-// sort by type of clothes
+// reset all type of filtres
+
+let reset = document.getElementById('reset');
+let resetStyle = true;
+reset.addEventListener('click', makeItemGrearAgain);
