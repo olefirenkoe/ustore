@@ -108,6 +108,10 @@ ul.breadcrumb li a[href="#"]:hover {
     transition: 2s;
 }
 
+#reset:active {
+    margin-top: 25px;
+}
+
 #clearStorage {
     position: absolute;
     right: 24px;
@@ -118,6 +122,10 @@ ul.breadcrumb li a[href="#"]:hover {
     background: #202021;
     border: none;
     outline: none;
+}
+
+#clearStorage:active {
+    top: 92px;
 }
 
 #imgCart:hover {
@@ -203,6 +211,14 @@ h2.gender {
     margin: 2px; 
 }*/
 
+.gender>label {
+    font-size: 20px;
+}
+
+.checkflex>label {
+    font-size: 18px;
+}
+
 .checkflex {
     display: flex;
     justify-content: center;
@@ -231,6 +247,12 @@ h2.gender {
     width: 100px;
     height: 30px;
     border-radius: 5px;
+    outline: none;
+}
+
+.button>input:active {
+    width: 95px;
+    height: 25px;
 }
 
 .range {
@@ -316,7 +338,23 @@ input[class="red"] {
     font-size: 20px;
 }
 
-.divButton {
+.item>input {
+    border-radius: 10px;
+    font-size: 19px;
+    font-weight: bold;
+    margin-top: 160px;
+    background: #16ba53;
+    border: none;
+    outline: none;
+    /* padding-left: 3px; */
+}
+
+.item>input[type="button"]:active {
+    margin-top: 162px;
+}
+
+
+/* .divButton {
     top: 200px;
 }
 
@@ -329,7 +367,7 @@ input[class="red"] {
     font-weight: bold;
     background: indianred;
     outline: none;
-}
+} */
 
 input[value="Notify"] {
     background-color: lightblue;

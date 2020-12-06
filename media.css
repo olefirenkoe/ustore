@@ -1,0 +1,21 @@
+/* @media only screen and (min-width: 1224px) {
+    body {
+        color: pink;
+    }
+    .gender>label {
+        font-size: 20px;
+    }
+    .checkflex>label {
+        font-size: 18px;
+    }
+} */
+
+@media only screen and (max-width: 950px) {
+    /* body {
+        color: red;
+    } */
+    #container {
+        grid-template-columns: 30% 35% 35%;
+        grid-template-rows: 120px auto 120px;
+    }
+}

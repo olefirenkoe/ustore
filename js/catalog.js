@@ -430,14 +430,13 @@ function checker() {
         }
         let j = 0;
         for (let i = 0; i < typeOfClothes.length; i++) {
+
             if (!typeOfClothes[i].checked) {
                 j++;
                 if (j == typeOfClothes.length) {
                     makeItemGrearAgain();
                 }
             }
-        }
-        for (let i = 0; i < typeOfClothes.length; i++) {
             if (typeOfClothes[i].type == "checkbox" && typeOfClothes[i].checked) {
                 for (let i = 0; i < divItem.length; i++) {
                     divItem[i].remove();
