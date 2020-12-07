@@ -38,6 +38,8 @@ function divForItemMaker(massiv = products) {
         let containerForProducts = document.getElementById("products");
         let divItem = document.createElement('DIV');
         divItem.setAttribute("class", "item num");
+        divItem.setAttribute("itemscope", '');
+        divItem.setAttribute("itemtype", "http://schema.org/Product")
         divItem.setAttribute("data-num", `${[i]}`);
         divItem.setAttribute("id", `${massiv[i].id}`)
         containerForProducts.appendChild(divItem);
@@ -56,17 +58,20 @@ function itemMaker(massiv = products, forPagination) {
     console.log("itemmaker")
     for (let i = 0; i < massiv.length; i++) {
         divItem = document.querySelectorAll(".item");
-        divItem[i].innerHTML = `<h2 class="name">${massiv[i].names}</h2>`
+        divItem[i].innerHTML = `<h2 itemprop="name" class="name">${massiv[i].names}</h2>`
         let divPhoto = document.createElement("DIV");
         divPhoto.setAttribute("class", "divPhoto");
         divItem[i].appendChild(divPhoto);
         let img1 = document.createElement("IMG");
         img1.setAttribute("src", `assets/catalog/${massiv[i].photo1}.jpg`);
         img1.setAttribute("class", "img1");
+        img1.setAttribute("alt", massiv[i].photo1);
+        img1.setAttribute("itemprop", "image");
         divPhoto.appendChild(img1);
         let img2 = document.createElement("IMG");
         img2.setAttribute("src", `assets/catalog/${massiv[i].photo2}.jpg`);
         img2.setAttribute("class", "img2");
+        img2.setAttribute("alt", massiv[i].photo2);
         divPhoto.appendChild(img2);
         let price = document.createElement('p');
         price.setAttribute("class", "right price");
@@ -90,6 +95,13 @@ function itemMaker(massiv = products, forPagination) {
             buttonForAdd.setAttribute("class", "right divButton");
         }
         divItem[i].appendChild(buttonForAdd);
+
+        let offers = document.createElement('div');
+        offers.setAttribute("itemprop", "offers");
+        offers.setAttribute("itemscope", "");
+        offers.setAttribute("itemtype", "http://schema.org/Offer");
+        offers.innerHTML = `<meta itemprop='price' content='${massiv[i].price}'>`;
+        divItem[i].appendChild(offers);
     }
     adderButton();
     firstPagePagination(forPagination);
@@ -341,7 +353,10 @@ function sorting(key, status) {
         products = [brownJacketHollywood, leatherJacket, pinkJacket, armoredFolder, trousersKillBill, jacketKillBill, swordKillBill, sweaterBrat, playerBrat, denimJacketBrat, soapFightClub, sunglassesFightClub, jacketFightClub, shoesHollywood];
     }
     for (let i = 0; i < lengthMassiv; i++) {
-        divItem[i].remove();
+        if (divItem[i]) {
+            divItem[i].remove();
+        }
+
     }
     sortedProducts = products.filter(function(product) {
         return product[key].includes(status);
@@ -449,35 +464,22 @@ function checker() {
                 divForItemMaker(sortedTypeOfClothes);
                 itemMaker(sortedTypeOfClothes, sortedTypeOfClothes);
             }
-            //     if (typeOfClothes[i].checked == false) {
-            //         console.log(1);
-            //         let offTypeClothesValue = typeOfClothes[i].value;
-            //         offTypeMassiv = productsClon.filter(function(product) {
-            //             return product.type.includes(offTypeClothesValue);
-            //         });
-            //         for (let i = 0; i < offTypeMassiv.length; i++) {
-            //             let idRemove = offTypeMassiv[i].id;
-            //             let itemForRemove = document.getElementById(idRemove);
-            //             if (itemForRemove) {
-            //                 itemForRemove.remove();
-            //             }
-            //         }
+            if (typeOfClothes[i].checked == false) {
+                console.log(1);
+                let offTypeClothesValue = typeOfClothes[i].value;
+                offTypeMassiv = productsClon.filter(function(product) {
+                    return product.type.includes(offTypeClothesValue);
+                });
+                for (let i = 0; i < offTypeMassiv.length; i++) {
+                    let idRemove = offTypeMassiv[i].id;
+                    let itemForRemove = document.getElementById(idRemove);
+                    if (itemForRemove) {
+                        itemForRemove.remove();
+                    }
+                }
 
-            //     
-            //     if (idRemove) {
-            //         let itemForRemove = document.getElementById(idRemove);
-            //         itemForRemove.remove();
-            //     }
+            }
 
-            //     // if (index > -1) {
-            //     // sortedTypeOfClothes.splice(index, 1);
-            //     // }
-            //     // console.log(sortedTypeOfClothes);
-            // }
-
-
-
-            //     }
         }
     }
 }
@@ -512,6 +514,7 @@ function makeItemGrearAgain() {
     for (let i = 0; i < divItem.length; i++) {
         divItem[i].remove();
     };
+    products = productsClon;
     divForItemMaker();
     itemMaker();
 }

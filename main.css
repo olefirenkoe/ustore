@@ -19,14 +19,13 @@ h2 {
 header {
     background: #000000;
     height: 90px;
+    font-family: 'Padauk', sans-serif;
 }
 
-
-/* ul {
-    display: flex;
-    list-style: none;
-    flex-wrap: nowrap;
-} */
+.logo {
+    float: left;
+    margin: 10px 10px;
+}
 
 .menu {
     text-align: right;
@@ -47,20 +46,6 @@ header {
     margin: 10px;
 }
 
-
-/* 
-ul>li {
-    margin-right: 50px;
-    margin-top: 10px;
-    color: #e73333;
-    font-size: 30px;
-}
-
-.phone {
-    font-size: 25px;
-    flex-wrap: nowrap;
-} */
-
 a {
     text-decoration: none;
     color: #ffffff;
@@ -76,7 +61,6 @@ input[type="search"] {
     background: #000000;
     text-align: center;
     outline: none;
-    /* font-size: 10px; */
     font-weight: bold;
     color: #ffffff;
 }

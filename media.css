@@ -1,21 +1,141 @@
-/* @media only screen and (min-width: 1224px) {
-    body {
-        color: pink;
-    }
-    .gender>label {
-        font-size: 20px;
-    }
-    .checkflex>label {
-        font-size: 18px;
-    }
-} */
-
-@media only screen and (max-width: 950px) {
-    /* body {
-        color: red;
-    } */
+@media only screen and (max-width: 1300px) {
     #container {
         grid-template-columns: 30% 35% 35%;
         grid-template-rows: 120px auto 120px;
+    }
+}
+
+@media only screen and (max-width: 950px) {
+    #container {
+        margin-right: 0px;
+        grid-template-columns: 40% 5% 45%;
+        grid-template-rows: 120px auto 120px;
+    }
+}
+
+@media only screen and (max-width: 859px) {
+    #container {
+        width: 100%;
+        margin-left: 15px;
+        grid-template-columns: 40% 5% 45%;
+        grid-template-rows: 120px auto 120px;
+    }
+}
+
+@media only screen and (max-width: 831px) {
+    #container {
+        width: 100%;
+        margin-left: 25px;
+        grid-template-columns: 40% 2% 48%;
+        grid-template-rows: 120px auto 120px;
+    }
+    .item {
+        width: 300px;
+        font-size: 10px;
+    }
+    .divPhoto>img {
+        margin-top: 20px;
+        width: 150px;
+        height: 150px;
+    }
+    .item>.price {
+        margin-left: -40px;
+    }
+    .item>input {
+        margin-top: 180px;
+        margin-left: -120px;
+    }
+    .item>input[type="button"]:active {
+        margin-top: 182px;
+    }
+    .divAvailability {
+        margin-top: 30px;
+        margin-left: -40px;
+    }
+}
+
+@media only screen and (max-width: 730px) {
+    #container {
+        grid-template-columns: 45% 2% 43%;
+        grid-template-rows: 120px auto 120px;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    header {
+        height: max-content;
+    }
+    header>ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    header>ul>li {
+        margin: -20px 0px;
+    }
+    #container {
+        margin-left: 10px;
+        width: calc(100% - 30px);
+        grid-template-columns: 50% 0% 50%;
+        grid-template-rows: 120px auto 120px;
+    }
+    #total {
+        left: -20px;
+    }
+    h2.gender {
+        margin-left: 40px;
+    }
+    div.gender {
+        margin-left: 0px;
+        margin-top: -30px;
+        padding-top: 0px;
+        padding: 20px;
+    }
+    .flexrow {
+        height: 250px;
+    }
+    .type {
+        height: max-content;
+    }
+    .checkflex>input {
+        width: 80px;
+    }
+    .button>input:active {
+        width: 78px;
+    }
+    .item {
+        position: relative;
+        width: 200px;
+    }
+    .right {
+        margin-left: -110px;
+    }
+    .item>input {
+        position: absolute;
+        bottom: 20px;
+        left: 160px;
+    }
+    .item>input[type="button"]:active {
+        bottom: 18px;
+    }
+    .item>input[value="Notify"] {
+        left: 180px;
+    }
+    .divAvailability {
+        position: absolute;
+        font-size: 12px;
+        top: 200px;
+        right: 0px;
+    }
+    .price {
+        position: absolute;
+        font-size: 14px;
+        top: 215px;
+        left: 80px;
+    }
+    footer {
+        display: flex;
+        flex-wrap: wrap;
+        height: max-content;
     }
 }
